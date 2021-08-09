@@ -1,9 +1,10 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "standard",
-    "standard-react",
-    "plugin:prettier/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb/whitespace",
+    "plugin:import/recommended",
     "plugin:@typescript-eslint/eslint-recommended"
   ],
   "env": {
@@ -19,6 +20,11 @@
   "settings": {
     "react": {
       "version": "16"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      }
     }
   },
   "rules": {
@@ -27,6 +33,10 @@
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
-    "import/export": 0
+    "import/export": 0,
+    "import/prefer-default-export": 0,
+    "import/extensions": ["warn", "never"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }]
   }
 }
