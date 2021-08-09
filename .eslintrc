@@ -1,5 +1,14 @@
 {
   "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "jsx-a11",
+    "node",
+    "promise",
+    "react",
+    "react-hook"
+  ],
   "extends": [
     "airbnb",
     "airbnb/hooks",
@@ -36,7 +45,6 @@
     "import/export": 0,
     "import/prefer-default-export": 0,
     "import/extensions": ["warn", "never"],
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }]
+    "react/react-in-jsx-scope": "off"
   }
 }
