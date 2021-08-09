@@ -1,6 +1,11 @@
-import { useCallback, useContext } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { StoreContext } from './Provider';
-import { getAtomValue, setAtomValue } from './store';
+import {
+  getAtomValue,
+  setAtomValue,
+  subscribeToAtom,
+  unsubscribeFromAtom,
+} from './store';
 import { Atom, Store } from './types';
 
 const useStore = (): Store => {
@@ -15,8 +20,15 @@ const useStore = (): Store => {
 
 export const useAtomValue = <Value>(atom: Atom<Value>): Value => {
   const store = useStore();
+  const [localState, setLocalState] = useState(getAtomValue(store, atom));
 
-  return getAtomValue(store, atom);
+  useEffect(() => {
+    subscribeToAtom(store, atom, setLocalState);
+
+    return () => unsubscribeFromAtom(store, atom, setLocalState);
+  }, []);
+
+  return localState;
 };
 
 type Setter<Value> = (value: Value) => void;

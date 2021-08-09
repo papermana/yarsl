@@ -7,6 +7,7 @@ export const getOrInitializeAtom = <Value>(
   if (!store.atoms.has(atom)) {
     store.atoms.set(atom, {
       value: atom.initialValue,
+      componentDependencies: new Set(),
     });
   }
 
